@@ -5,9 +5,8 @@ module.exports = {
     description: 'List of all bot commands',
     permissions: '',
     cooldown:'0',
-    async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
+    async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild,randomColor){
             const {commands} = message.client;
-            var randomColor = Math.floor(Math.random()*16777215).toString(16);
             if(!args.length){
                 const Embed = new Discord.MessageEmbed()
                 .setTitle(`To manage the bot settings please type ${process.env.PREFIX}settings`)
