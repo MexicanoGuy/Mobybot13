@@ -2,8 +2,9 @@ module.exports = {
     name: 'meme',
     description: 'sends a random meme',
     aliases: ['dank'],
-    cooldown:'3',
+    cooldown:3,
     permissions:['SEND_MESSAGES'],
+    
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
         const randomPuppy = require(`random-puppy`);
         const subReddits = ['Memes','Dankmemes','Funny','AdviceAnimals','ComedyCemetery','PrequelMemes'];

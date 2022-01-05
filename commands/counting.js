@@ -6,7 +6,7 @@ module.exports = {
     description: 'This is minigame. Point of this minigame is to make the biggest count, so try not to screw it up!',
     permissions:['SEND_MESSAGES'],
     aliases:["c","currentcount",'count','leader','score','cc','stats'],
-    cooldown:["0"],
+    cooldown:1,
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
         if(disabledData[module.exports.name]==="true") return message.reply(`** \`${module.exports.name}\` command is disabled in this guild, ask discord mod to enable this command!**`);
         const channel = bot.channels.cache.find(ch => ch.id === guildData.countingCh);

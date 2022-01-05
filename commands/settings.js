@@ -3,6 +3,9 @@ module.exports = {
     name:'settings',
     description:`Setup bot settings for your guild. To do so please type settings for more information!`,
     permissions:['ADMINISTRATOR','MANAGE_CHANNELS'],
+    aliases:['set'],
+    cooldown:3,
+
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
         if(!args[0]){
             let settingsEmbed = new Discord.MessageEmbed()

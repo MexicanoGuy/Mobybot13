@@ -5,7 +5,7 @@ module.exports = {
     description: 'allows you to deposit your $M money to the bank',
     aliases: ['dep','ds'],
     permissions:['SEND_MESSAGES'],
-    cooldown:"10",
+    cooldown:10,
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
         if(disabledData[module.exports.name]==="true") return message.reply(`** \`${module.exports.name}\` command is disabled in this guild, ask discord mod to enable this command!**`);
         const money = args[0];

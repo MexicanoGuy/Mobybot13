@@ -7,7 +7,7 @@ module.exports = {
     aliases: ['skip','next','stop','queue','pause','skipto','resume','loop','volume','vol','v','p'],
     description: `This command allows you to play a song, make a queue with songs, skip the songs using ${prefix}skip or ${prefix}next, or to ${prefix}stop the queue`,
     permissions:["SPEAK","CONNECT"],
-    cooldown:'2',
+    cooldown:2,
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild,randomColor){
         const voice_channel = message.member.voice.channel;
         const server_queue = queue.get(message.guild.id);
@@ -84,32 +84,6 @@ module.exports = {
           });
     }
 }
-const loop_song = async(message, server_queue, voice_channel) =>{
-    if(!voice_channel) return message.channel.send('You need to be in a channel to execute this command!');
-    if(!server_queue) return message.channel.send(`:notepad_spiral: ***There are no songs in the queue*** :notepad_spiral:`);
-    if(server_queue.isLooped == false){
-        server_queue.isLooped = true;
-        return message.channel.send(`** Song has been looped! **`)
-    }else{
-        server_queue.isLooped = false;
-        return message.channel.send(`** Song has been unlooped! **`)
-    }
-}
-
-const skip_to = async (message, server_queue, args, song, voice_channel) => {
-    if(!voice_channel) return message.channel.send('You need to be in a channel to execute this command!');
-    if(!server_queue) return message.channel.send(`:notepad_spiral: ***There are no songs in the queue*** :notepad_spiral:`);
-    
-    let {guild} = message;
-    const song_queue = queue.get(guild.id);
-    const stream = ytdl(song.url, { filter: 'audioonly' });
-    
-    if(!args[0] && !Number.isInteger(args[0])) return message.channel.send(`**Please specify the number where to skip(in seconds) **`);
-    //if(args[0] > server_queue.songs[0]) return
-        song_queue.connection.play(stream, { seek: Number.parseInt(args[0]), volume: dispatcherVolume});
-
-    return message.channel.send(`** *${JSON.stringify(server_queue.songs[0].title) }* has been skipped to: ${args[0]}**`);
-}
 
 const video_player = async (guild, song, message) => {
     const song_queue = queue.get(guild.id);
@@ -144,6 +118,34 @@ const video_player = async (guild, song, message) => {
     }
     
 }
+
+const loop_song = async(message, server_queue, voice_channel) =>{
+    if(!voice_channel) return message.channel.send('You need to be in a channel to execute this command!');
+    if(!server_queue) return message.channel.send(`:notepad_spiral: ***There are no songs in the queue*** :notepad_spiral:`);
+    if(server_queue.isLooped == false){
+        server_queue.isLooped = true;
+        return message.channel.send(`** Song has been looped! **`)
+    }else{
+        server_queue.isLooped = false;
+        return message.channel.send(`** Song has been unlooped! **`)
+    }
+}
+
+const skip_to = async (message, server_queue, args, song, voice_channel) => {
+    if(!voice_channel) return message.channel.send('You need to be in a channel to execute this command!');
+    if(!server_queue) return message.channel.send(`:notepad_spiral: ***There are no songs in the queue*** :notepad_spiral:`);
+    
+    let {guild} = message;
+    const song_queue = queue.get(guild.id);
+    const stream = ytdl(song.url, { filter: 'audioonly' });
+    
+    if(!args[0] && !Number.isInteger(args[0])) return message.channel.send(`**Please specify the number where to skip(in seconds) **`);
+    //if(args[0] > server_queue.songs[0]) return
+        song_queue.connection.play(stream, { seek: Number.parseInt(args[0]), volume: dispatcherVolume});
+
+    return message.channel.send(`** *${JSON.stringify(server_queue.songs[0].title) }* has been skipped to: ${args[0]}**`);
+}
+
 const skip_song = (message, server_queue) => {
     if(!server_queue) return message.channel.send(`:notepad_spiral: ***There are no songs in the queue*** :notepad_spiral:`);
     if (!message.member.voice.channel) return message.channel.send('You need to be in a channel to execute this command!');

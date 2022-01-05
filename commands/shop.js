@@ -4,7 +4,6 @@ module.exports = {
     description: 'Welcome to the shop, if you wish to buy anything react with the correct emoji',
     permissions: ['READ_MESSAGE_HISTORY'],
     cooldown:'3',
-    aliases:['buy'],
 
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
         const citizen = message.guild.roles.cache.find(role => role.name === "Citizen");

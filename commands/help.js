@@ -4,7 +4,7 @@ module.exports = {
     aliases: ['halp','command','h'],
     description: 'List of all bot commands',
     permissions: '',
-    cooldown:'0',
+    cooldown:1,
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild,randomColor){
             const {commands} = message.client;
             if(!args.length){
@@ -27,19 +27,29 @@ module.exports = {
             const name = args[0];
             const comd = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
             if(!comd){
-                message.reply(`**You didn't provide any command name!**`);
+                message.reply(`**That command/alias doesn't exist!**`);
                 return;
             }
-            
+            var desc,aliases,cooldown,perms;
+                desc = comd.description;
+                aliases = comd.aliases;
+                cooldown = comd.cooldown;
+                perms = comd.permissions;
+
+            if(!desc) desc = "none";
+            if(!aliases) aliases = "none";
+            if(!cooldown) cooldown = "none";
+            if(!perms) perms = "none";
+                
                 const DataEmbed = new Discord.MessageEmbed()
                 .setTitle(`:speech_left: Information about ${prefix}${comd.name} command:`)
                 .setColor(randomColor)
                 .addFields(
-                    { name: ':regional_indicator_c: Command Name', value: `${comd.name}` },
-                    { name: ':regional_indicator_d: Description:', value: comd.description, inline: false },
-                    { name: ':regional_indicator_a: Aliases:', value:`${comd.aliases},`, inline: false },
-                    { name: ':regional_indicator_c: Cooldown:', value: `${comd.cooldown}`, inline: false },
-                    { name: ':regional_indicator_p: Mandatory permissions:', value: comd.permissions, inline: false}
+                    { name: ':regional_indicator_c: Command Name', value: comd.name },
+                    { name: ':regional_indicator_d: Description:', value: desc, inline: false },
+                    { name: ':regional_indicator_a: Aliases:', value: aliases , inline: false },
+                    { name: ':regional_indicator_c: Cooldown:', value: cooldown, inline: false },
+                    { name: ':regional_indicator_p: Mandatory permissions:', value: perms, inline: false}
                 )
                 
             

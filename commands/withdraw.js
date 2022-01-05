@@ -3,6 +3,7 @@ const profileModel = require('../models/profileSchema');
 module.exports = {
     name: 'withdraw',
     description: 'allows you to withdraw your $M money to the bank',
+    aliases:['wd'],
     permissions:['SEND_MESSAGES'],
     cooldown:"10",
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){

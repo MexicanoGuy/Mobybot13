@@ -3,6 +3,7 @@ module.exports = {
     description:'Creates Embed with verify Emoji to receive a verified role',
     aliases:['ver','vy'],
     permissions:["ADMINISTRATOR"],
+    cooldown:3,
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
         if(disabledData[module.exports.name]==="true") return message.reply(`** \`${module.exports.name}\` command is disabled in this guild, ask discord mod to enable this command!**`);
         const verified = message.guild.roles.cache.find(role => role.name === "verified");

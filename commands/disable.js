@@ -3,7 +3,7 @@ module.exports = {
     description:`If you want to disable any command type ${process.env.PREFIX}disable + "commandName". Enable by typing ${process.env.PREFIX}enable + "commandName"`,
     aliases: ['disable','enable'],
     permissions:["ADMINISTRATOR"],
-    cooldown:"0",
+    cooldown:1,
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
         var allBotsCommands = ["avatar","balance","beg","counting","deposit","image","leave","lottery","meme","mute","play","verify","withdraw","shop"];
         if(commandName==="disable"){

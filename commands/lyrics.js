@@ -3,6 +3,7 @@ const { execute } = require("./counting");
 module.exports = {
     name:'lyrics',
     description:'You can use this command to search for the lyrics for the song!',
+    cooldown:5,
     aliases:['ly'],
     permissions:['SEND_MESSAGES'],
 

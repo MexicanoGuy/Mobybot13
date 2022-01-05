@@ -3,7 +3,7 @@ module.exports = {
     description:`Allows to mute pinged user, you need to have right permission to use this command.`,
     aliases:['mt','m'],
     permissions:["SEND_MESSAGES","SPEAK","CONNECT"],
-    cooldown:"300",
+    cooldown:300,
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
       const channel = message.channel;
       let user = message.mentions.users.first();

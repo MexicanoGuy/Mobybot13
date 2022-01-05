@@ -8,7 +8,7 @@ module.exports = {
     name: 'image',
     description:'sends specified image from internet',
     aliases: ['photo'],
-    cooldown: '5',
+    cooldown: 5,
     permissions:['SEND_MESSAGES'],
 
     async execute(message,args,commandName,bot,Discord,profileData,countingData,guildData,disabledData,guild){
