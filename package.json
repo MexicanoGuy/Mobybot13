@@ -2,6 +2,9 @@
   "name": "mobybot",
   "version": "12.0.0",
   "description": "",
+  "engines": {
+    "node": "6.14.8"
+  },
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
